@@ -22,8 +22,15 @@ const host = process.env.HOST || "localhost";
  * @param {http.ClientResponse} res
  */
 
+const arrayFrasi = ["Prima ti ignorano, poi ti deridono, poi ti combattono. Poi vinci.", "E' nel momento delle decisioni che si plasma il tuo destino.", "Niente e' davvero difficile se lo si divide in tanti piccoli pezzettini.", "Trasforma le tue ferite in saggezza.", "Innamorati prima di te, poi della vita.", "Se perdi qualcuno ma trovi te stessa hai vinto."];
+
+function fraseRandom() {
+    let random = arrayFrasi[Math.floor(Math.random() * arrayFrasi.length)];
+    return random;
+}
+
 const server = http.createServer(function (req, res) {
-    htmlResponse(res, "<h1>Ciao</h1>");
+    htmlResponse(res, "<h1>" + process.env.FRASE + "</h1><br><h1>" + fraseRandom() + "</h1>");
 });
 
 server.listen(port, function () {
